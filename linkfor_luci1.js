@@ -1,77 +1,60 @@
-// feature.js
+// andromeda.js
+(function() {
+    // Remove existing content (optional)
+    document.body.innerHTML = '';
 
-window.onload = function() {
-  // Show opening message
-  document.getElementById('status').textContent = 'Opening link...';
+    // Add rainbow label
+    const label = document.createElement('div');
+    label.className = 'rainbow-text';
+    label.textContent = 'anti unblocker by abs0lute 😴';
+    document.body.appendChild(label);
 
-  const blankWindow = window.open('about:blank', '_blank');
+    // Add iframe
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://example.com'; // CHANGE THIS URL to your target
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    iframe.style.overflow = 'hidden';
+    document.body.appendChild(iframe);
 
-  if (blankWindow) {
-    blankWindow.document.write(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <title>Home</title>
-    <link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Google_Classroom_Logo.svg/960px-Google_Classroom_Logo.svg.png?_=202210171637384">
-    <style type="text/css">
-    html, body, div, iframe {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      border: none;
-    }
-    iframe {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border: none;
-      overflow: auto;
-    }
-    .rainbow-text {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      z-index: 1000;
-      font-family: Arial, sans-serif;
-      font-size: 18px;
-      font-weight: bold;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-      animation: rainbow 3s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes rainbow {
-      0% { color: #ff0000; } 
-      14% { color: #ff7f00; }
-      28% { color: #ffff00; }
-      42% { color: #00ff00; }
-      57% { color: #0000ff; }
-      71% { color: #4b0082; }
-      85% { color: #9400d3; }
-      100% { color: #ff0000; }
-    }
-    </style>
-    </head>
-    <body>
-    <div class="rainbow-text">made by abs0lute</div>
-    <iframe src="https://playernation.skills-sims.com/" frameborder="0" width="100%" height="100%"></iframe>
-    </body>
-    </html>
-    `);
+    // Add rainbow animation CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        html, body, div, iframe {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            border: none;
+        }
+        .rainbow-text {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: rainbow 3s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes rainbow {
+            0% { color: #FF7F00; } 
+            14% { color: #FF5500; }
+            28% { color: #FF2200; }
+            42% { color: #9900CC; }
+            57% { color: #6600FF; }
+            71% { color: #0033FF; }
+            85% { color: #00FFFF; }
+            100% { color: #FF7F00; }
+        }
+    `;
+    document.head.appendChild(style);
 
-    blankWindow.document.close();
-
-    document.getElementById('status').textContent = 'Link opened!';
-
-    setTimeout(function() {
-      window.close();
-    }, 2000);
-
-  } else {
-    document.getElementById('status').textContent = 'Popup blocked! Please allow popups.';
-    document.getElementById('message').textContent = 'Enable popups and refresh.';
-  }
-
-  window.onbeforeunload = function() {
-    return "You might have unsaved changes. Are you sure you want to leave?";
-  };
-};
+    // beforeunload protection
+    window.addEventListener('beforeunload', function(e) {
+        e.preventDefault();
+        e.returnValue = '';
+    });
+})();
