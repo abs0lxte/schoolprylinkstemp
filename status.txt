@@ -1,1 +1,2 @@
+Gateway 481: Connected
 Gateway 481: Online
